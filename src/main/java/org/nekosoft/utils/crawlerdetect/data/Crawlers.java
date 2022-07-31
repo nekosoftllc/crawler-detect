@@ -13,7 +13,7 @@ public class Crawlers extends AbstractDataProvider {
     }
 
     public Crawlers(List<String> data) {
-        this.data = data;
+        super(data);
     }
 
 }

@@ -13,7 +13,7 @@ public class Exclusions extends AbstractDataProvider {
     }
 
     public Exclusions(List<String> data) {
-        this.data = data;
+        super(data);
     }
 
 }

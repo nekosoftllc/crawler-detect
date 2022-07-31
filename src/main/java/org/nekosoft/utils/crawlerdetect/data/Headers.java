@@ -13,7 +13,7 @@ public class Headers extends AbstractDataProvider {
     }
 
     public Headers(List<String> data) {
-        this.data = data;
+        super(data);
     }
 
 }

@@ -16,7 +16,8 @@ public class AbstractDataProvider {
 
     protected List<String> data;
 
-    public AbstractDataProvider() {
+    public AbstractDataProvider(List<String> data) {
+        this.data = data;
     }
 
     public AbstractDataProvider(URL source) throws IOException {
