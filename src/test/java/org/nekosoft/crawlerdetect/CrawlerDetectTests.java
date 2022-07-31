@@ -14,12 +14,23 @@ public class CrawlerDetectTests {
 
     CrawlerDetect detector = CrawlerDetect.newInstance();
 
-    AbstractDataProvider crawlerUAs = new AbstractDataProvider(
+    // Create static class so cache files have reliable names
+    static class TestCrawlerList extends AbstractDataProvider {
+        TestCrawlerList(URL src) throws IOException { super(src); }
+    }
+
+    // Create static class so cache files have reliable names
+    static class TestDeviceList extends AbstractDataProvider {
+        TestDeviceList(URL src) throws IOException { super(src); }
+    }
+
+    AbstractDataProvider crawlerUAs = new TestCrawlerList(
             new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/tests/crawlers.txt")
-    ) { };
-    AbstractDataProvider deviceUAs = new AbstractDataProvider(
+    );
+
+    AbstractDataProvider deviceUAs = new TestDeviceList(
             new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/tests/devices.txt")
-    ) { };
+    );
 
     public CrawlerDetectTests() throws IOException { }
 
