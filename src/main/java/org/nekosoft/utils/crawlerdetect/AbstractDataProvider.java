@@ -21,6 +21,12 @@ public class AbstractDataProvider {
 
     public AbstractDataProvider(URL source) throws IOException {
         this.source = source;
+        reloadData();
+    }
+
+    public void reloadData() throws IOException {
+        URL source = this.source;
+        if (source == null) return;
         String baseDir = System.getProperty("crawlerdetect.cfg.baseDir", System.getProperty("java.io.tmpdir"));
         int refreshDays = Integer.parseInt(System.getProperty("crawlerdetect.cfg.refreshDays", "31"));
         Path cacheDir = Path.of(baseDir, "CrawlerDetectCache");
