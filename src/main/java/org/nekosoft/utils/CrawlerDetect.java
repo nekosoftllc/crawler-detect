@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
+/**
+ *
+ */
 public interface CrawlerDetect {
 
     static CrawlerDetect newInstance() {
@@ -18,7 +21,7 @@ public interface CrawlerDetect {
             detector.setUaExclusions(new Exclusions(new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/raw/Exclusions.txt")));
             detector.setHeadersToCheck(new Headers(new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/raw/Headers.txt")));
         } catch (IOException e) {
-            System.err.printf("Could not load configuration data for Crawler Detector");
+            System.err.print("Could not load configuration data for Crawler Detector");
         }
         return detector;
     }

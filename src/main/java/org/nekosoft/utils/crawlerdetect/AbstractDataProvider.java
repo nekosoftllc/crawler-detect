@@ -26,7 +26,7 @@ public class AbstractDataProvider {
     }
 
     public void reloadData() throws IOException {
-        URL source = this.source;
+        URL source = this.source; // copy into local variable, so I can replace it with cached file if one is present
         if (source == null) return;
         String baseDir = System.getProperty("crawlerdetect.cfg.baseDir", System.getProperty("java.io.tmpdir"));
         int refreshDays = Integer.parseInt(System.getProperty("crawlerdetect.cfg.refreshDays", "31"));
