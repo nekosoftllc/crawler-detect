@@ -16,4 +16,10 @@ public class Headers extends AbstractDataProvider {
         super(data);
     }
 
+    @Override
+    public void reloadData() throws IOException {
+        super.reloadData();
+        data = data.stream().map(s -> s.startsWith("HTTP_") ? s.substring(5) : s).toList();
+    }
+
 }
