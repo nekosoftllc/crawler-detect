@@ -128,3 +128,8 @@ detector.setCrawlerPatterns(yourOwnAbstractDataProviderForCrawlers);
 detector.setUaExclusions(yourOwnAbstractDataProviderForExclusions);
 detector.setHeadersToCheck(yourOwnAbstractDataProviderForHeaders);
 ```
+
+## TODO
+
+- implement the `getMatch` functionality available in the PHP code base
+- add JavaDoc comments where applicable
