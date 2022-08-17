@@ -53,6 +53,9 @@ public class Detector implements CrawlerDetect {
 
     @Override
     public boolean isCrawler(Map<String,String> headers) {
+        if (headersToCheck == null) {
+            throw new IllegalStateException("Cannot check for bots in headers without crawler header data");
+        }
         StringBuilder uaString = new StringBuilder();
         for (String altHeader : headersToCheck.getAllValues()) {
             String header = headers.get(altHeader);
