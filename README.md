@@ -15,7 +15,8 @@ Add a dependency on this library to your Maven configuration
 ```
 
 Get a new instance of the detector with the `CrawlerDetect::newInstance` method. The instance that is returned
-loads all the necessary definitions and configuration from the original repository of the PHP CrawlerDetect library.
+loads all the necessary definitions and configuration from the original repository of the
+[PHP CrawlerDetect library](https://github.com/JayBizzle/Crawler-Detect).
 
 ```java
 CrawlerDetect detector = CrawlerDetect.newInstance();
@@ -116,7 +117,7 @@ The three standard subclasses `Crawlers`, `Exclusions`, and `Headers` all provid
 ### `Detector`
 
 The `Detector` class is the default implementation of the `CrawlerDetect` interface. The `CrawlerDetect::newInstance`
-method creates a new instance of it and initializes with the URLs of the original data from the PHP library, with the 
+method creates a new instance of it and initializes it with the URLs of the original data from the PHP library, with the 
 links given above.
 
 Custom instances can pass specialized data providers that define their own data sources or even just directly take the 
