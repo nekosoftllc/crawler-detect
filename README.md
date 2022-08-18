@@ -107,9 +107,9 @@ This class can be manually instantiated with any URL or even directly with a lis
 data reloading mechanism will be completely disabled.
 
 ```java
-public AbstractDataProvider(List<String> data)
+public AbstractDataProvider(List<String> data) { /* ... */ }
 
-public AbstractDataProvider(URL source) throws IOException
+public AbstractDataProvider(URL source) throws IOException { /* ... */ }
 ```
 
 The three standard subclasses `Crawlers`, `Exclusions`, and `Headers` all provide the same constructor overloads.
