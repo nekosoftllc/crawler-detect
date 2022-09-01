@@ -1,5 +1,7 @@
 # CrawlerDetect
 
+[![javadoc](https://javadoc.io/badge2/org.nekosoft.utils/crawler-detect/javadoc.svg)](https://javadoc.io/doc/org.nekosoft.utils/crawler-detect)
+
 A Java port of [crawlerdetect.io](https://github.com/JayBizzle/Crawler-Detect), a PHP class for detecting bots/crawlers/spiders via the User Agent and `http_from` header
 
 ## Usage
