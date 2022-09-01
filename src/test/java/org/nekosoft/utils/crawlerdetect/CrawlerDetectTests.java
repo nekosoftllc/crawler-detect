@@ -1,8 +1,8 @@
-package org.nekosoft.crawlerdetect;
+package org.nekosoft.utils.crawlerdetect;
 
 import org.junit.jupiter.api.Test;
 import org.nekosoft.utils.CrawlerDetect;
-import org.nekosoft.utils.crawlerdetect.AbstractDataProvider;
+import org.nekosoft.utils.crawlerdetect.data.Crawlers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +42,30 @@ public class CrawlerDetectTests {
     @Test
     public void testAgainstNonBots() {
         testWithFileForResult(deviceUAs.getAllValues(), false);
+    }
+
+    @Test
+    public void testGetMatchingCrawler() {
+        Detector myDetector = new Detector();
+        myDetector.setCrawlerPatterns(new Crawlers(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
+        String ua = myDetector.getMatchingCrawler("Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19");
+        assertEquals("googleweblight", ua);
+    }
+
+    @Test
+    public void testNoMatchingCrawler() {
+        Detector myDetector = new Detector();
+        myDetector.setCrawlerPatterns(new Crawlers(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
+        String ua = myDetector.getMatchingCrawler("Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; nokiamobiledark) Chrome/38.0.1025.166 Mobile Safari/535.19");
+        assertNull(ua);
+    }
+
+    @Test
+    public void testExceptionIfNoPatterns() {
+        Detector myDetector = new Detector();
+        assertThrows(IllegalStateException.class,
+                () -> myDetector.getMatchingCrawler("Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19")
+        );
     }
 
     private void testWithFileForResult(List<String> testData, boolean isCrawler) {

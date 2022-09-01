@@ -16,6 +16,9 @@ public class Headers extends AbstractDataProvider {
         super(data);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reloadData() throws IOException {
         super.reloadData();
