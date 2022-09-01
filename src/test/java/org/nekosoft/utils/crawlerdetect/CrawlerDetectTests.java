@@ -6,7 +6,9 @@ import org.nekosoft.utils.crawlerdetect.data.Crawlers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,6 +60,22 @@ public class CrawlerDetectTests {
         myDetector.setCrawlerPatterns(new Crawlers(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
         String ua = myDetector.getMatchingCrawler("Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; nokiamobiledark) Chrome/38.0.1025.166 Mobile Safari/535.19");
         assertNull(ua);
+    }
+
+    @Test
+    public void testHeadersMethodsBot() {
+        Map<String,String> testHeaders = new HashMap<>();
+        testHeaders.put("user-agent", "Zermelo");
+        boolean res = detector.isCrawler(testHeaders);
+        assertTrue(res);
+    }
+
+    @Test
+    public void testHeadersMethodsNonBot() {
+        Map<String,String> testHeaders = new HashMap<>();
+        testHeaders.put("user-agent", "Safari");
+        boolean res = detector.isCrawler(testHeaders);
+        assertFalse(res);
     }
 
     @Test
