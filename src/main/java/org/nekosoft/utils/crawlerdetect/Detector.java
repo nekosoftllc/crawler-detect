@@ -41,10 +41,21 @@ public class Detector implements CrawlerDetect {
     public Detector() {
     }
 
+    /**
+     * The Crawler Patterns are regular expression patterns that are used to check whether a certain user agent string
+     * could potentially be a crawler, spider or bot.
+     * @return the {@link AbstractDataProvider} that contains the crawler patterns for this instance
+     */
     public AbstractDataProvider getCrawlerPatterns() {
         return crawlerPatterns;
     }
 
+    /**
+     * Sets the crawler patterns for this instance.
+     * <p>
+     * See {@link #getCrawlerPatterns()}
+     * @param crawlerPatterns the {@link AbstractDataProvider} that contains the crawler patterns to be set for this instance
+     */
     public void setCrawlerPatterns(AbstractDataProvider crawlerPatterns) {
         this.crawlerPatterns = crawlerPatterns;
         this.crawlerPatternRE = crawlerPatterns.getAllValues().stream()
@@ -52,18 +63,40 @@ public class Detector implements CrawlerDetect {
                 .toList();
     }
 
+    /**
+     * The list of Headers To Check is a list of HTTP headers that should be checked in order to find user agent strings
+     * and test to determine whether they potentially represent a crawler, spider or bot.
+     * @return the {@link AbstractDataProvider} that contains the list of headers to check for this instance
+     */
     public AbstractDataProvider getHeadersToCheck() {
         return headersToCheck;
     }
 
+    /**
+     * Sets the list of headers to check for this instance.
+     * <p>
+     * See {@link #getHeadersToCheck()}
+     * @param headersToCheck the {@link AbstractDataProvider} that contains the list of headers to check to be set for this instance
+     */
     public void setHeadersToCheck(AbstractDataProvider headersToCheck) {
         this.headersToCheck = headersToCheck;
     }
 
+    /**
+     * The User Agent Exclusions are regular expression patterns that are used to remove parts of a user agent string
+     * that definitely does not represent a crawler, spider or bot, and therefore does not need to be tested.
+     * @return the {@link AbstractDataProvider} that contains the list of user agent exclusions for this instance
+     */
     public AbstractDataProvider getUaExclusions() {
         return uaExclusions;
     }
 
+    /**
+     * Sets the user agent exclusions to be applied by this instance.
+     * <p>
+     * See {@link #getUaExclusions()}
+     * @param uaExclusions the {@link AbstractDataProvider} that contains the user agent exclusions to be applied by this instance
+     */
     public void setUaExclusions(AbstractDataProvider uaExclusions) {
         this.uaExclusions = uaExclusions;
         this.uaExclusionsRE = uaExclusions.getAllValues().stream()

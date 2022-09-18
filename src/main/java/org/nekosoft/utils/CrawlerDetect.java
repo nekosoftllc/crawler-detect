@@ -6,7 +6,6 @@ import org.nekosoft.utils.crawlerdetect.data.Exclusions;
 import org.nekosoft.utils.crawlerdetect.data.Headers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 
 /**
@@ -71,9 +70,9 @@ public interface CrawlerDetect {
     static CrawlerDetect newInstance() {
         Detector detector = new Detector();
         try {
-            detector.setCrawlerPatterns(new Crawlers(new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/raw/Crawlers.txt")));
-            detector.setUaExclusions(new Exclusions(new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/raw/Exclusions.txt")));
-            detector.setHeadersToCheck(new Headers(new URL("https://raw.githubusercontent.com/JayBizzle/Crawler-Detect/master/raw/Headers.txt")));
+            detector.setCrawlerPatterns(new Crawlers());
+            detector.setUaExclusions(new Exclusions());
+            detector.setHeadersToCheck(new Headers());
         } catch (IOException e) {
             System.err.print("Could not load configuration data for Crawler Detector");
         }

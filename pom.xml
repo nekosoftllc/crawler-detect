@@ -6,15 +6,15 @@
 
     <groupId>org.nekosoft.utils</groupId>
     <artifactId>crawler-detect</artifactId>
-    <version>0.9.0</version>
+    <version>1.0.0</version>
     <name>Crawler Detect</name>
 	<description>A Java port of crawlerdetect.io, a PHP class for detecting bots/crawlers/spiders via the user agent and http_from header</description>
     <url>https://github.com/nekosoftllc/crawler-detect/wiki</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
 	<dependencies>

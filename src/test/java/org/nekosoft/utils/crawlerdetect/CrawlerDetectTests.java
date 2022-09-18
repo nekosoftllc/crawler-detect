@@ -2,7 +2,6 @@ package org.nekosoft.utils.crawlerdetect;
 
 import org.junit.jupiter.api.Test;
 import org.nekosoft.utils.CrawlerDetect;
-import org.nekosoft.utils.crawlerdetect.data.Crawlers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +48,7 @@ public class CrawlerDetectTests {
     @Test
     public void testGetMatchingCrawler() {
         Detector myDetector = new Detector();
-        myDetector.setCrawlerPatterns(new Crawlers(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
+        myDetector.setCrawlerPatterns(new AbstractDataProvider(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
         String ua = myDetector.getMatchingCrawler("Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19");
         assertEquals("googleweblight", ua);
     }
@@ -57,7 +56,7 @@ public class CrawlerDetectTests {
     @Test
     public void testNoMatchingCrawler() {
         Detector myDetector = new Detector();
-        myDetector.setCrawlerPatterns(new Crawlers(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
+        myDetector.setCrawlerPatterns(new AbstractDataProvider(List.of("(google|amazon|microsoft)[b-w]{3}(light|dark)")));
         String ua = myDetector.getMatchingCrawler("Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; nokiamobiledark) Chrome/38.0.1025.166 Mobile Safari/535.19");
         assertNull(ua);
     }
@@ -76,6 +75,22 @@ public class CrawlerDetectTests {
         testHeaders.put("user-agent", "Safari");
         boolean res = detector.isCrawler(testHeaders);
         assertFalse(res);
+    }
+
+    @Test
+    public void testHeadersMethodsBotGetMatching() {
+        Map<String,String> testHeaders = new HashMap<>();
+        testHeaders.put("user-agent", "Zermelo");
+        String res = detector.getMatchingCrawler(testHeaders);
+        assertEquals("Zermelo", res);
+    }
+
+    @Test
+    public void testHeadersMethodsNonBotGetMatching() {
+        Map<String,String> testHeaders = new HashMap<>();
+        testHeaders.put("user-agent", "Safari");
+        String res = detector.getMatchingCrawler(testHeaders);
+        assertNull(res);
     }
 
     @Test

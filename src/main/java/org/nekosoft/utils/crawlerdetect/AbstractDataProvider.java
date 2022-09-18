@@ -44,8 +44,31 @@ import java.util.List;
  */
 public class AbstractDataProvider {
 
+    /**
+     * The URL representing the source of data for this data provider. It is available in subclasses
+     * in case they need to alter the source URL before data is downloaded. Usually done as part of an
+     * override of the {@link #reloadData()} method, before a call to the superclass.
+     * <pre>
+     *     public void reloadData() throws IOException {
+     *         // do something with the source variable
+     *         super.reloadData();
+     *     }
+     * </pre>
+     */
     protected URL source;
 
+    /**
+     * The data contained in this data provider. It is available in subclasses
+     * for further processing after the standard loading process. Usually done as part of an
+     * override of {@link #reloadData()}, after a call to the superclass.
+     * <pre>
+     *     public void reloadData() throws IOException {
+     *         super.reloadData();
+     *         // do something with the data variable
+     *     }
+     * </pre>
+     * See {@link org.nekosoft.utils.crawlerdetect.data.Headers}.
+     */
     protected List<String> data;
 
     /**
@@ -61,8 +84,9 @@ public class AbstractDataProvider {
     /**
      * Creates a new data provider from the data at the given URL. The URL should point to a list of strings, one per line.
      * The data will be loaded from the URL on construction and can be reloaded on demand at any point over the lifecycle
-     * of the instance by calling the {@link this#reloadData()} method.
+     * of the instance by calling the {@link #reloadData()} method.
      * @param source the URL from which this instance will load data initially and reload data on request
+     * @throws IOException if there were issues downloading data from the source URL
      */
     public AbstractDataProvider(URL source) throws IOException {
         this.source = source;
