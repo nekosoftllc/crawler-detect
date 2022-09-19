@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
@@ -60,7 +61,7 @@ public class Detector implements CrawlerDetect {
         this.crawlerPatterns = crawlerPatterns;
         this.crawlerPatternRE = crawlerPatterns.getAllValues().stream()
                 .map(s -> Pattern.compile(s, CASE_INSENSITIVE))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**
@@ -101,7 +102,7 @@ public class Detector implements CrawlerDetect {
         this.uaExclusions = uaExclusions;
         this.uaExclusionsRE = uaExclusions.getAllValues().stream()
                 .map(s -> Pattern.compile(s, CASE_INSENSITIVE))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     /**

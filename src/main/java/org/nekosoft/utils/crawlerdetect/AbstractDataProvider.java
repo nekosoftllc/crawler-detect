@@ -9,6 +9,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class is the abstract parent of
@@ -132,7 +133,7 @@ public class AbstractDataProvider {
         }
         try (InputStream in = source.openStream()) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            data = reader.lines().toList();
+            data = reader.lines().collect(Collectors.toList());
         }
         if (!file.exists()) {
             try (BufferedWriter writer = Files.newBufferedWriter(file.toPath())) {

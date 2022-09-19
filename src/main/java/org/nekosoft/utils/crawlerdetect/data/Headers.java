@@ -5,6 +5,7 @@ import org.nekosoft.utils.crawlerdetect.Detector;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.stream.Collectors;
 
 /**
  * This {@link AbstractDataProvider} is preconfigured to load Headers To Check (see {@link Detector#getHeadersToCheck()})
@@ -40,7 +41,7 @@ public class Headers extends AbstractDataProvider {
         super.reloadData();
         data = data.stream().map(s ->
                 (s.startsWith("HTTP_") ? s.substring(5) : s).toLowerCase().replace('_','-')
-        ).toList();
+        ).collect(Collectors.toList());
     }
 
 }
